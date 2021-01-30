@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+service TransmitTimeAndGPS {
+    // Simple RPC.
+    //
+    // Sends the timestamp and GPS coordinates of an image
+
+    rpc SendData (TimeGPSRequest) returns (TimeGPSResponse) {}
+
+}
+
+message TimeGPSRequest {
+    string request_id = 1;
+}
+
+message TimeGPSResponse {
+    string request_id = 1;
+    string timestamp = 2;
+    string gpscoords = 3;
+}
