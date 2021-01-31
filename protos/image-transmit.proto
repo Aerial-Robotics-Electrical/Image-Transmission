@@ -1,20 +1,39 @@
 syntax = "proto3";
 
-service TransmitTimeAndGPS {
-    // Simple RPC.
+package ImageTransmission;
+
+service TransmitImageAndData {
+    // Image Transmission RPC.
     //
-    // Sends the timestamp and GPS coordinates of an image
+    // Sends a payload containing the image and metadata
+    //   including timestamp and GPS coordinates.
+    // Future implementations might use 'streams' to
+    //   better handle chunking or customize chunk sizes.
 
-    rpc SendData (TimeGPSRequest) returns (TimeGPSResponse) {}
-
+    rpc SendData (ImageDataRequest) returns (ImageDataResponse) {}
 }
 
-message TimeGPSRequest {
+message ImageDataRequest {
+    // Send a message containing some identifier.
+    //
+    // This identifier is probably going to be ignored,
+    //   just used to send some data in the request.
+
     string request_id = 1;
 }
 
-message TimeGPSResponse {
-    string request_id = 1;
-    string timestamp = 2;
-    string gpscoords = 3;
+message ImageDataResponse {
+    // Send the image and required metadata.
+    //
+    // The identifier should be the same as the request,
+    //   but will probably be ignored.
+    // If error code is set, no image data is sent. This
+    //   may be changed to just send the last image taken
+    //   regardless of transmit status.
+
+    string request_id  = 1;
+    int32  status_code = 2;
+    string time_stamp  = 3;
+    string nmea_gprmc  = 4;
+    bytes  image_data  = 5;
 }

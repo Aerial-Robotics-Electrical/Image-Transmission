@@ -16,4 +16,8 @@ Use the following command to compile new .proto files into the requisite Python 
 
 _Use `python` or `python3` depending on your system_
 
-`python3 -m grpc_tools.protoc --proto_path=./protos <name of file> --python_out=. --grpc_python_out=.`
+`python3 -m grpc_tools.protoc --proto_path=./protos --python_out=./ImageTransmission 
+--grpc_python_out=./ImageTransmission <proto file>`
+
+Also, you will need to edit the `ImageTransmission/image_transmit_pb2_grpc.py` file's import. This is a well-documented
+problem with no expected fix. Change the import to `ImageTransmission.image_transmit_pb2` for the code to function.

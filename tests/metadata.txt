@@ -1,0 +1,3 @@
+request_id: req_0
+time_stamp: 1612071027.418509
+nmea_gprmc: $GPRMC,042608.994,A,4025.718,N,08654.827,W,,,310121,000.0,W*6B
